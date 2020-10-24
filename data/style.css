@@ -1,0 +1,112 @@
+body {
+  font-family: verdana, sans-serif;
+  text-align: center;
+  background: #222;
+  height: 100%;
+  margin: 0;
+  color: #ffffff;
+}
+html {
+  --h: 11.55vh;
+}
+a {
+  color: white;
+}
+.heading {
+  background-color: #444;
+}
+.heading a {
+  margin: 0px 2px;
+  padding: 6px 12px;
+  font-weight: bold;
+  border-radius: 2px;
+  display: inline-block;
+  text-decoration: none;
+}
+.heading a:hover {
+  background-color: #666;
+  text-decoration: underline;
+}
+.button {
+  background: #333;
+  color: #fff;
+  border: 2px solid #444;
+  border-radius: 4px;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1em;
+  padding: 6px 8px;
+}
+.big-button {
+  background: #333;
+  color: #fff;
+  font-family: Verdana, Helvetica, sans-serif;
+  border: 0.3ch solid #444;
+  border-radius: 50px;
+  display: inline-block;
+  font-size: 8vmin;
+  width: 95%;
+  max-width: 800px;
+  margin-top: 2.4vh;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 1.2vh 0;
+}
+#redButton.on {
+  color: red;
+  background-color: #443333;
+  border-color: red;
+}
+#yellowButton.on {
+  color: yellow;
+  background-color: #444433;
+  border-color: yellow;
+}
+#greenButton.on {
+  color: green;
+  background-color: #334433;
+  border-color: green;
+}
+.dot {
+  display: inline-block;
+  border: 0.3ch solid #333;
+  border-radius: 50%;
+}
+.settings {
+  text-align: left;
+  line-height: 1.8em;
+  margin: 0 30px;
+}
+.settings .input-item {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 10px;
+}
+.settings .input-item div {
+  margin-right: 10px;
+}
+.hint-text {
+  font-size: 80%;
+  color: #ccc;
+}
+hr {
+  margin-bottom: 10px;
+}
+input {
+  padding: 4x;
+  font-size: 14px;
+}
+input[type="checkbox"] {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+h2 {
+  margin-bottom: 10px;
+}
+@media (max-width: 720px) {
+  .settings .input-item {
+    display: block;
+  }
+}

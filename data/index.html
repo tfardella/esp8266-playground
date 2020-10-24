@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div class="heading">
+      <a href="/">Home</a>
+      <a href="/led">LEDs</a>
+      <a href="/temp">Temperature</a>
+      <a href="/settings">Settings</a>
+    </div>
+
+    <h1>Home</h1>
+    <p>Time: <span id="updateTime">%TIME%</span></p>
+    <p>IP Address: %IP_ADDRESS%</p>
+    <p>MDNS: http://%MDNS_NAME%.local</p>
+    <p>Access Point Name: %AP_NAME%</p>
+    <p>WiFi Signal Strength: %RSSI%</p>
+    <p>Chip ID: %CHIP_ID%</p>
+    <p>CPU Frequency: %CPU_FREQ%</p>
+    <p>Flash Chip Size: %FLASH_SIZE%</p>
+  </body>
+</html>

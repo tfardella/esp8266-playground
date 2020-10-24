@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <title>WiFi Settings</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div class="heading">
+      <a href="/">Home</a>
+      <a href="/led">LEDs</a>
+      <a href="/temp">Temperature</a>
+      <a href="/settings">Settings</a>
+    </div>
+    <h1>WiFi setup</h1>
+    <div class="settings">
+      <form id="form_s" name="Sf" method="post">
+        <h2>Connect to existing network</h2>
+        <hr />
+        <div class="input-item">
+          <div>Network name:</div>
+          <div>
+            <input type="text" name="CS" maxlength="32" value="%SSID%" />
+          </div>
+          <div class="hint-text">(SSID, empty to not connect)</div>
+        </div>
+        <div class="input-item">
+          <div>Network password:</div>
+          <div><input type="password" name="CP" maxlength="63" /></div>
+        </div>
+        <div class="input-item">
+          <div>Static IP:</div>
+          <div>
+            <input name="I0" type="number" min="0" max="255" required /> .
+            <input name="I1" type="number" min="0" max="255" required /> .
+            <input name="I2" type="number" min="0" max="255" required /> .
+            <input name="I3" type="number" min="0" max="255" required />
+          </div>
+          <div class="hint-text">(leave at 0.0.0.0 for DHCP)</div>
+        </div>
+        <div class="input-item">
+          <div>Static gateway:</div>
+          <div>
+            <input name="G0" type="number" min="0" max="255" required />.
+            <input name="G1" type="number" min="0" max="255" required />.
+            <input name="G2" type="number" min="0" max="255" required />.
+            <input name="G3" type="number" min="0" max="255" required />
+          </div>
+        </div>
+        <div class="input-item">
+          <div>Static subnet mask:</div>
+          <div>
+            <input name="S0" type="number" min="0" max="255" required />.
+            <input name="S1" type="number" min="0" max="255" required />.
+            <input name="S2" type="number" min="0" max="255" required />.
+            <input name="S3" type="number" min="0" max="255" required />
+          </div>
+        </div>
+        <div class="input-item">
+          <div>mDNS address:</div>
+          <div>
+            http://
+            <input type="text" name="CM" maxlength="32" value="%MDNS_NAME%" />
+            .local
+          </div>
+          <div class="hint-text">(leave empty for no mDNS)</div>
+        </div>
+        <div>Client IP: <span class="sip">%IP_ADDRESS%</span></div>
+
+        <h2>Configure Access Point</h2>
+        <hr />
+        <div class="input-item">
+          <div>
+            AP name (SSID):
+          </div>
+          <div>
+            <input name="AS" maxlength="32" value="%AP_NAME%" />
+          </div>
+        </div>
+        <div class="input-item">
+          <div>Hide AP name: <input type="checkbox" name="AH" /></div>
+        </div>
+        <div class="input-item">
+          <div>AP password:</div>
+          <div><input type="password" name="AP" maxlength="63" /></div>
+          <div class="hint-text">(leave empty for open)</div>
+        </div>
+        <div class="input-item">
+          <div>Access Point WiFi channel:</div>
+          <div>
+            <input name="AC" type="number" min="1" max="13" required />
+          </div>
+        </div>
+        <div class="input-item">
+          <div>
+            AP opens:
+          </div>
+          <div>
+            <select class="select-css" name="AB">
+              <option value="0">No connection after boot</option>
+              <option value="1">Disconnected</option>
+              <option value="2">Always</option>
+              <option value="3">Never (not recommended)</option>
+            </select>
+          </div>
+        </div>
+        <div class="input-item">
+          AP IP: <span class="sip"> Not active </span>
+        </div>
+        <hr />
+        <button class="button" type="submit">Save & Update</button>
+      </form>
+    </div>
+  </body>
+</html>

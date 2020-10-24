@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LEDs</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div class="heading">
+      <a href="/">Home</a>
+      <a href="/led">LEDs</a>
+      <a href="/temp">Temperature</a>
+      <a href="/settings">Settings</a>
+    </div>
+    <h1>LEDs</h1>
+    <div>
+      <button
+        class="big-button %RED_STATUS%"
+        id="redButton"
+        >Red</button>
+    </div>
+    <div>
+      <button
+        class="big-button %YELLOW_STATUS%"
+        id="yellowButton"
+        >Yellow</button>
+    </div>
+    <div>
+      <button
+        class="big-button %GREEN_STATUS%"
+        id="greenButton"
+        >Green</button>
+    </div>
+  </body>
+  <script>
+    Number(%RED_STATUS%) ? redButton.classList.add("on") : redButton.classList.remove("on");
+    Number(%YELLOW_STATUS%) ? yellowButton.classList.add("on") : yellowButton.classList.remove("on");
+    Number(%GREEN_STATUS%) ? greenButton.classList.add("on") : greenButton.classList.remove("on");
+  </script>
+</html>
