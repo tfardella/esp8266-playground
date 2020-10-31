@@ -68,6 +68,18 @@ a {
   background-color: #334433;
   border-color: green;
 }
+#motion{
+  background-color: darkred;
+  display: inline-block;
+  padding: 4px;
+  border: 2px solid #cc0000;
+  border-radius: 4px;
+  width: 45px;  
+}
+#motion.detected {
+  background-color: green;
+  border: 2px solid #00cc00;
+}
 .dot {
   display: inline-block;
   border: 0.3ch solid #333;

@@ -1,5 +1,7 @@
 {
   "files.associations": {
     "functional": "cpp"
-  }
+  },
+  "eslint.enable": false,
+  "jscs.enable": false
 }

@@ -38,6 +38,7 @@
         time,
         temperature,
         humidity,
+        motion,
         leds
       } = JSON.parse(e.data);
       
@@ -58,6 +59,12 @@
 
         case "Home":
           document.getElementById("updateTime").innerHTML = time;
+          const motionEl = document.getElementById("motion");
+          motionEl.innerHTML = motion? "YES" : "NO";
+          motion
+            ? motionEl.classList.add("detected")
+            : motionEl.classList.remove("detected");
+    
           break;
 
         case "LEDs":

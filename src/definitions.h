@@ -1,6 +1,10 @@
+#pragma once
+
 #ifndef DEFINITIONS
 #define DEFINITIONS
+
 #include <Arduino.h>
+
 #ifdef ESP32
 #include <WiFi.h>
 #include <AsyncTCP.h>
@@ -11,6 +15,7 @@
 #include <ESPAsyncTCP.h>
 #include <ESP8266mDNS.h>
 #endif
+
 #include <ESPAsyncWebServer.h>
 #include <WString.h>
 #include <FS.h>   // Include the SPIFFS library
@@ -18,7 +23,6 @@
 #include <NTPClient.h>
 #include <WiFiUdp.h>
 #include <WebSocketsServer.h>
-#include <ArduinoJson.h>
 
 // DHT Sensor
 uint8_t DHTPin = D5; 
@@ -31,7 +35,7 @@ uint8_t DHTPin = D5;
 DHT dht(DHTPin, DHTTYPE);                
 
 AsyncWebServer server(80);
-WebSocketsServer wss = WebSocketsServer(8081);
+// WebSocketsServer wss = WebSocketsServer(8081);
 
 char ssid[32] = "9Greenleaf";
 char password[32] = "GreenleafLane";
@@ -75,7 +79,7 @@ float Temperature;
 float Humidity;
 
 const long utcOffsetInSeconds = (-7 * 60 * 60);
-char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+char daysOfTheWeek[7][10] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 char timeStr[80];
 char wsDataStr[150];
 

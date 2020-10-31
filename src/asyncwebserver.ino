@@ -5,6 +5,7 @@
 #include "definitions.h"
 #include "templateProcessor.h"
 #include "ota.h"
+#include "motion-sensor.h"
 
 String getContentType(String filename) { // convert the file extension to the MIME type
   if (filename.endsWith(".html")) return "text/html";
@@ -45,27 +46,6 @@ void updateTime() {
     timeClient.update();
     getCurrentTime();
     previousTimeUpdateMillis += timeUpdateInterval;
-  }
-}
-
-void sendClientData() {
-  if (currentMillis - previousDataUpdateMillis >= dataUpdateInterval) {
-    const size_t capacity = JSON_OBJECT_SIZE(3) + JSON_OBJECT_SIZE(4) + 86;
-    StaticJsonDocument<capacity> doc;
-    doc["time"] = timeStr;
-    doc["temperature"] = Temperature;
-    doc["humidity"] = Humidity;
-    JsonObject leds  = doc.createNestedObject("leds");
-    leds["red"] = redStatus;
-    leds["yellow"] = yellowStatus;
-    leds["green"] = greenStatus;
-    serializeJson(doc, wsDataStr);
-    
-    // Check if a client has connected
-    int i = wss.broadcastTXT(wsDataStr);
-    Serial.printf("Connected websocket clients ping: %s\n", wsDataStr);
-
-    previousDataUpdateMillis += dataUpdateInterval;
   }
 }
 
@@ -110,40 +90,7 @@ void flashLEDs(){
   setLed(greenLed, 0);
 }
 
-void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length) { // When a WebSocket message is received
-  switch (type) {
-    case WStype_DISCONNECTED: {            // if the websocket is disconnected
-        Serial.printf("[%u] Disconnected!\n", num);
-      }
-      break;
-    case WStype_CONNECTED: {              // if a new websocket connection is established
-        IPAddress ip = wss.remoteIP(num);
-        Serial.printf("[%u] Connected from %d.%d.%d.%d url: %s\n", num, ip[0], ip[1], ip[2], ip[3], payload);
-        wss.sendTXT(num, "Connected");
-        getLEDStatus();
-      }
-      break;
-    case WStype_TEXT:                     // if new text data is received
-      Serial.printf("[%u] get Text: %s\n", num, payload);
-      const size_t capacity = JSON_OBJECT_SIZE(1) + JSON_OBJECT_SIZE(3) + 22;
-      StaticJsonDocument<capacity> leds;
-      // Deserialize the JSON document
-      DeserializationError error = deserializeJson(leds, payload);
-      if(!error){
-        redStatus = leds["red"];
-        yellowStatus = leds["yellow"];
-        greenStatus = leds["green"];
-        setLEDs();
-      }
-      break;
-  }
-}
-
-void startWebSocketServer() {           // Start a WebSocket server
-  wss.begin();                          // start the websocket server
-  wss.onEvent(webSocketEvent);          // if there's an incomming websocket message, go to function 'webSocketEvent'
-  Serial.print("WebSocket server started.");
-}
+#include "websocket.h"
 
 void setup()
 {  
@@ -214,16 +161,19 @@ void setup()
   MDNS.addService("http", "tcp", 80);
   startOTA();                  // Start the OTA service
 
+  pirSetup();
+
   flashLEDs();
 }
 
 void loop()
 {
   MDNS.update();
-  ArduinoOTA.handle();                        // listen for OTA events
-  wss.loop();                 // constantly check for websocket events
+  ArduinoOTA.handle();        // listen for OTA events
+  wss.loop();                 // check for websocket events
   currentMillis = millis();   // capture the latest value of millis()
   updateTemperature();
   updateTime();
+  pirRead();
   sendClientData();
 }

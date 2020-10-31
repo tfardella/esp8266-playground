@@ -1,9 +1,12 @@
+#pragma once
+
 #include <ArduinoOTA.h>
 
 const char *OTAName = "WOMBAT1";           // A name and a password for the OTA service
 const char *OTAPassword = "wombat1";
 
-void startOTA() { // Start the OTA service
+// Start the OTA service
+void startOTA() { 
   ArduinoOTA.setHostname(OTAName);
   ArduinoOTA.setPassword(OTAPassword);
 
