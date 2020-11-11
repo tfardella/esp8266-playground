@@ -4,6 +4,7 @@
 #include <ArduinoJson.h>
 
 WebSocketsServer wss = WebSocketsServer(8081);
+char wsDataStr[150];
 
 /**
  *  WebSocket event handler

@@ -19,23 +19,8 @@
 #include <ESPAsyncWebServer.h>
 #include <WString.h>
 #include <FS.h>   // Include the SPIFFS library
-#include "DHT.h"
-#include <NTPClient.h>
-#include <WiFiUdp.h>
-#include <WebSocketsServer.h>
-
-// DHT Sensor
-uint8_t DHTPin = D5; 
-// Uncomment one of the lines below for whatever DHT sensor type you're using!
-#define DHTTYPE DHT11   // DHT 11
-//#define DHTTYPE DHT21   // DHT 21 (AM2301)
-//#define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321
-               
-// Initialize DHT sensor.
-DHT dht(DHTPin, DHTTYPE);                
 
 AsyncWebServer server(80);
-// WebSocketsServer wss = WebSocketsServer(8081);
 
 char ssid[32] = "9Greenleaf";
 char password[32] = "GreenleafLane";
@@ -68,22 +53,8 @@ char cpuFreqString[16];
 
 // Timing variables
 unsigned long currentMillis = 0;
-unsigned long previousTempUpdateMillis = 0;
-const int tempUpdateInterval = 10000;
-unsigned long previousTimeUpdateMillis = 0;
-const int timeUpdateInterval = 1000;
+
 unsigned long previousDataUpdateMillis = 0;
 const int dataUpdateInterval = 1000;
 
-float Temperature;
-float Humidity;
-
-const long utcOffsetInSeconds = (-7 * 60 * 60);
-char daysOfTheWeek[7][10] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
-char timeStr[80];
-char wsDataStr[150];
-
-// Define NTP Client to get time
-WiFiUDP ntpUDP;
-NTPClient timeClient(ntpUDP, "pool.ntp.org", utcOffsetInSeconds);
 #endif

@@ -3,9 +3,11 @@
  * 
  */
 #include "definitions.h"
-#include "templateProcessor.h"
 #include "ota.h"
 #include "motion-sensor.h"
+#include "ntp-time.h"
+#include "temperature.h"
+#include "templateProcessor.h"
 
 String getContentType(String filename) { // convert the file extension to the MIME type
   if (filename.endsWith(".html")) return "text/html";
@@ -23,30 +25,6 @@ bool handleFileExists(String path) {              // send the right file to the 
   }
   Serial.println("\tFile Not Found");
   return false;                                   // If the file doesn't exist, return false
-}
-
-void getTempurature() {
-  Temperature = dht.readTemperature(true);
-  Humidity = dht.readHumidity();
-}
-
-void updateTemperature() {
-  if (currentMillis - previousTempUpdateMillis >= tempUpdateInterval) {
-    getTempurature();
-    previousTempUpdateMillis += tempUpdateInterval;
-  }
-}
-
-void getCurrentTime() {
-  sprintf(timeStr, "%s, %d:%02d:%02d", daysOfTheWeek[timeClient.getDay()], timeClient.getHours(),timeClient.getMinutes(), timeClient.getSeconds());
-}
-
-void updateTime() {
-  if (currentMillis - previousTimeUpdateMillis >= timeUpdateInterval) {
-    timeClient.update();
-    getCurrentTime();
-    previousTimeUpdateMillis += timeUpdateInterval;
-  }
 }
 
 void getChipInfo(){
@@ -173,7 +151,7 @@ void loop()
   wss.loop();                 // check for websocket events
   currentMillis = millis();   // capture the latest value of millis()
   updateTemperature();
-  updateTime();
+  updateTimeString();
   pirRead();
   sendClientData();
 }
