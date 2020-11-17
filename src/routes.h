@@ -17,24 +17,24 @@
 
       if (color == "red")
       {
-        setLed(redLed, !digitalRead(redLed));
-        redStatus = digitalRead(redLed);
+        getLEDStatus();
+        setLed(redLed, !redStatus);
         Serial.print("Red LED Status: ");
         Serial.println(redStatus);
       }
 
       if (color == "yellow")
       {
-        setLed(yellowLed, !digitalRead(yellowLed));
-        yellowStatus = digitalRead(yellowLed);
+        getLEDStatus();
+        setLed(yellowLed, !yellowStatus);
         Serial.print("Yellow LED Status: ");
         Serial.println(yellowStatus);
       }
 
       if (color == "green")
       {
-        setLed(greenLed, !digitalRead(greenLed));
-        greenStatus = digitalRead(greenLed);
+        getLEDStatus();
+        setLed(greenLed, !greenStatus);
         Serial.print("Green LED Status: ");
         Serial.println(greenStatus);
       }

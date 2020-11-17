@@ -35,13 +35,16 @@
     console.log("Websocket onMessage: ", e.data);
     if (e.data !== "Connected") {
       const {
-        time,
+        date,
         temperature,
         humidity,
         motion,
         leds
       } = JSON.parse(e.data);
       
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour:'numeric', minute:'numeric', second:'numeric'};
+      const currentDate = new Date(Date(date));
+
       ledState = leds;
 
       switch (document.title) {
@@ -54,11 +57,11 @@
               humidity
             ).toFixed(2);
           }
-          document.getElementById("updateTime").innerHTML = time;
+          document.getElementById("updateTime").innerHTML = currentDate.toLocaleDateString('en-US',options);
           break;
 
         case "Home":
-          document.getElementById("updateTime").innerHTML = time;
+          document.getElementById("updateTime").innerHTML = currentDate.toLocaleDateString('en-US',options);
           const motionEl = document.getElementById("motion");
           motionEl.innerHTML = motion? "YES" : "NO";
           motion

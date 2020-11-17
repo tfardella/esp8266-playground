@@ -37,13 +37,6 @@ IPAddress staticSubnet(255, 255, 255, 0);     //most common subnet in home netwo
 
 const char *PARAM_LIGHT_COLOR = "color";
 const char *PARAM_LIGHT_STATUS = "status";
-const int redLed = D1;
-const int yellowLed = D2;
-const int greenLed = D3;
-
-int redStatus = 0;
-int yellowStatus = 0;
-int greenStatus = 0;
 char statusStr[8];
 
 char ipAddress[16];

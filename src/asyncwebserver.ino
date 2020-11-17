@@ -7,6 +7,7 @@
 #include "motion-sensor.h"
 #include "ntp-time.h"
 #include "temperature.h"
+#include "leds.h"
 #include "templateProcessor.h"
 
 String getContentType(String filename) { // convert the file extension to the MIME type
@@ -36,45 +37,11 @@ void getChipInfo(){
   sprintf( flashChipSizeString, "%08X", ESP.getFlashChipRealSize());  
 }
 
-void setLed(int led, int state)
-{
-  digitalWrite(led, state);
-}
-
-void setLEDs(){
-  Serial.printf("setLEDs: %d, %d, %d", redStatus, yellowStatus, greenStatus);
-  setLed(redLed, redStatus);
-  setLed(yellowLed, yellowStatus);
-  setLed(greenLed, greenStatus);
-}
-
-void getLEDStatus() {
-  redStatus = digitalRead(redLed);
-  yellowStatus = digitalRead(yellowLed);
-  greenStatus = digitalRead(greenLed);
-}
-
-void flashLEDs(){
-  setLed(redLed, 1);
-  delay(200);
-  setLed(yellowLed, 1);
-  delay(200);
-  setLed(greenLed, 1);
-  delay(1000);
-  setLed(redLed, 0);
-  delay(200);
-  setLed(yellowLed, 0);
-  delay(200);
-  setLed(greenLed, 0);
-}
-
 #include "websocket.h"
 
 void setup()
 {  
-  pinMode(redLed, OUTPUT);
-  pinMode(yellowLed, OUTPUT);
-  pinMode(greenLed, OUTPUT);
+  setupLEDs();
 
   Serial.begin(230400);
   WiFi.mode(WIFI_STA);

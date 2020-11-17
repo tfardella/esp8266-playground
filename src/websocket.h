@@ -40,9 +40,12 @@ void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length
 
 void sendClientData() {
   if (currentMillis - previousDataUpdateMillis >= dataUpdateInterval) {
-    const size_t capacity = JSON_OBJECT_SIZE(3) + JSON_OBJECT_SIZE(5) + 201;
-    StaticJsonDocument<capacity> doc;
-    doc["time"] = timeStr;
+    const size_t capacity = JSON_OBJECT_SIZE(3) + JSON_OBJECT_SIZE(6);
+    // StaticJsonDocument<capacity> doc;
+    DynamicJsonDocument doc(capacity);
+    uint32_t time = timeClient.getEpochTime(); 
+    doc["id"] = ESP.getChipId();
+    doc["date"] = time;
     doc["temperature"] = Temperature;
     doc["humidity"] = Humidity;
     doc["motion"] = motionState;
