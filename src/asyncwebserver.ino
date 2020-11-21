@@ -117,8 +117,8 @@ void loop()
   ArduinoOTA.handle();        // listen for OTA events
   wss.loop();                 // check for websocket events
   currentMillis = millis();   // capture the latest value of millis()
+  updateTime();
   updateTemperature();
-  updateTimeString();
   pirRead();
   sendClientData();
 }
