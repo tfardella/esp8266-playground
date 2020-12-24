@@ -68,7 +68,7 @@ a {
   background-color: #334433;
   border-color: green;
 }
-#motion{
+#motion, #distance{
   background-color: darkred;
   display: inline-block;
   padding: 4px;
@@ -76,7 +76,7 @@ a {
   border-radius: 4px;
   width: 45px;  
 }
-#motion.detected {
+#motion.detected, #distance {
   background-color: green;
   border: 2px solid #00cc00;
 }

@@ -8,6 +8,7 @@
 #include "ntp-time.h"
 #include "temperature.h"
 #include "leds.h"
+#include "ultrasonic.h"
 #include "templateProcessor.h"
 
 String getContentType(String filename) { // convert the file extension to the MIME type
@@ -15,6 +16,7 @@ String getContentType(String filename) { // convert the file extension to the MI
   else if (filename.endsWith(".css")) return "text/css";
   else if (filename.endsWith(".js")) return "application/javascript";
   else if (filename.endsWith(".ico")) return "image/x-icon";
+  else if (filename.endsWith(".json")) return "application/json";
   return "text/plain";
 }
 
@@ -107,6 +109,7 @@ void setup()
   startOTA();                  // Start the OTA service
 
   pirSetup();
+  ultrasonicSetup();
 
   flashLEDs();
 }
@@ -119,6 +122,6 @@ void loop()
   currentMillis = millis();   // capture the latest value of millis()
   updateTime();
   updateTemperature();
-  pirRead();
+  ultrasonicRead();
   sendClientData();
 }

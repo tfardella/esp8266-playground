@@ -39,6 +39,7 @@
         temperature,
         humidity,
         motion,
+        distance,
         leds
       } = JSON.parse(e.data);
       
@@ -67,7 +68,9 @@
           motion
             ? motionEl.classList.add("detected")
             : motionEl.classList.remove("detected");
-    
+
+          const distanceEl = document.getElementById("distance");
+          distanceEl.innerHTML = (distance < 2) || (distance > 400) ? "---" : distance;
           break;
 
         case "LEDs":

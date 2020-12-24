@@ -44,7 +44,18 @@
   });
 
   // Wifi settings
+
   server.on("/settings", HTTP_GET, [](AsyncWebServerRequest *request) {
+    request->send(SPIFFS, "/settings.html", String(), false, processor);
+  });
+
+  server.on("/settings", HTTP_POST, [](AsyncWebServerRequest *request) {
+    Serial.print("--- Settings form submitted ---");
+    int args = request->args();
+    for(int i=0;i<args;i++){
+      Serial.printf("ARG[%s]: %s\n", request->argName(i).c_str(), request->arg(i).c_str());
+    }
+
     request->send(SPIFFS, "/settings.html", String(), false, processor);
   });
 

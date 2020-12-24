@@ -1,7 +1,6 @@
 #pragma once
 
 #include <WebSocketsServer.h>
-#include <ArduinoJson.h>
 
 WebSocketsServer wss = WebSocketsServer(8081);
 char wsDataStr[150];
@@ -40,7 +39,7 @@ void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length
 
 void sendClientData() {
   if (currentMillis - previousDataUpdateMillis >= dataUpdateInterval) {
-    const size_t capacity = JSON_OBJECT_SIZE(3) + JSON_OBJECT_SIZE(6);
+    const size_t capacity = JSON_OBJECT_SIZE(3) + JSON_OBJECT_SIZE(7);
     // StaticJsonDocument<capacity> doc;
     DynamicJsonDocument doc(capacity);
     uint32_t time = timeClient.getEpochTime(); 
@@ -49,6 +48,7 @@ void sendClientData() {
     doc["temperature"] = Temperature;
     doc["humidity"] = Humidity;
     doc["motion"] = motionState;
+    doc["distance"] = distance;
     JsonObject leds  = doc.createNestedObject("leds");
     leds["red"] = redStatus;
     leds["yellow"] = yellowStatus;

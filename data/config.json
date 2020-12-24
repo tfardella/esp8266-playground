@@ -1,0 +1,17 @@
+{
+  "ssid":"",
+  "password":"",
+  "mdnsname":"",
+  "staticIp":[
+    {"ip":""},
+    {"gateway":""},
+    {"mask":""}
+  ],
+  "ap":[
+    {"ssid":""},
+    {"password":""},
+    {"hide":""},
+    {"channel":""},
+    {"opens":""}
+  ]
+}

@@ -22,47 +22,47 @@
         <div class="input-item">
           <div>Network name:</div>
           <div>
-            <input type="text" name="CS" maxlength="32" value="%SSID%" />
+            <input type="text" name="SSID" maxlength="32" value="%SSID%" />
           </div>
           <div class="hint-text">(SSID, empty to not connect)</div>
         </div>
         <div class="input-item">
           <div>Network password:</div>
-          <div><input type="password" name="CP" maxlength="63" /></div>
+          <div><input type=password" name="SSIDPassword" maxlength="63" /></div>
         </div>
         <div class="input-item">
           <div>Static IP:</div>
           <div>
-            <input name="I0" type="number" min="0" max="255" required /> .
-            <input name="I1" type="number" min="0" max="255" required /> .
-            <input name="I2" type="number" min="0" max="255" required /> .
-            <input name="I3" type="number" min="0" max="255" required />
+            <input name="IP0" type="number" min="0" max="255" value="0"/> .
+            <input name="IP1" type="number" min="0" max="255" value="0"/> .
+            <input name="IP2" type="number" min="0" max="255" value="0"/> .
+            <input name="IP3" type="number" min="0" max="255" value="0"/>
           </div>
           <div class="hint-text">(leave at 0.0.0.0 for DHCP)</div>
         </div>
         <div class="input-item">
           <div>Static gateway:</div>
           <div>
-            <input name="G0" type="number" min="0" max="255" required />.
-            <input name="G1" type="number" min="0" max="255" required />.
-            <input name="G2" type="number" min="0" max="255" required />.
-            <input name="G3" type="number" min="0" max="255" required />
+            <input name="GW0" type="number" min="0" max="255" value="0"/>.
+            <input name="GW1" type="number" min="0" max="255" value="0"/>.
+            <input name="GW2" type="number" min="0" max="255" value="0"/>.
+            <input name="GW3" type="number" min="0" max="255" value="0"/>
           </div>
         </div>
         <div class="input-item">
           <div>Static subnet mask:</div>
           <div>
-            <input name="S0" type="number" min="0" max="255" required />.
-            <input name="S1" type="number" min="0" max="255" required />.
-            <input name="S2" type="number" min="0" max="255" required />.
-            <input name="S3" type="number" min="0" max="255" required />
+            <input name="SM0" type="number" min="0" max="255" value="0"/>.
+            <input name="SM1" type="number" min="0" max="255" value="0"/>.
+            <input name="SM2" type="number" min="0" max="255" value="0"/>.
+            <input name="SM3" type="number" min="0" max="255" value="0"/>
           </div>
         </div>
         <div class="input-item">
           <div>mDNS address:</div>
           <div>
             http://
-            <input type="text" name="CM" maxlength="32" value="%MDNS_NAME%" />
+            <input type="text" name="mDNSName" maxlength="32" value="%MDNS_NAME%" />
             .local
           </div>
           <div class="hint-text">(leave empty for no mDNS)</div>
@@ -76,21 +76,21 @@
             AP name (SSID):
           </div>
           <div>
-            <input name="AS" maxlength="32" value="%AP_NAME%" />
+            <input name="APSSID" maxlength="32" value="%AP_NAME%" />
           </div>
         </div>
         <div class="input-item">
-          <div>Hide AP name: <input type="checkbox" name="AH" /></div>
+          <div>Hide AP name: <input type="checkbox" name="APHide" /></div>
         </div>
         <div class="input-item">
           <div>AP password:</div>
-          <div><input type="password" name="AP" maxlength="63" /></div>
+          <div><input type="password" name="APPassword" maxlength="63" /></div>
           <div class="hint-text">(leave empty for open)</div>
         </div>
         <div class="input-item">
           <div>Access Point WiFi channel:</div>
           <div>
-            <input name="AC" type="number" min="1" max="13" required />
+            <input name="APChannel" type="number" min="1" max="13" value="1"/>
           </div>
         </div>
         <div class="input-item">
@@ -98,8 +98,8 @@
             AP opens:
           </div>
           <div>
-            <select class="select-css" name="AB">
-              <option value="0">No connection after boot</option>
+            <select class="select-css" name="APOpens">
+              <option default value="0">No connection after boot</option>
               <option value="1">Disconnected</option>
               <option value="2">Always</option>
               <option value="3">Never (not recommended)</option>
