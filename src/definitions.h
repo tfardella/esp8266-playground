@@ -23,8 +23,8 @@
 
 AsyncWebServer server(80);
 
-char ssid[32] = "9Greenleaf";
-char password[32] = "GreenleafLane";
+char ssid[32] = "xxxx"; // Enter your network SSID here,
+char password[32] = "xxxx"; // Enter your network password here.
 char apName[32] = "wombat-02";
 char dnsName[32] = "wombat-web-2";  // dns http://wombat-web-2.local
 IPAddress localIP;
